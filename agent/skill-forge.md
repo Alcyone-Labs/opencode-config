@@ -184,6 +184,28 @@ main() {
   local tmp_dir
   if [[ "\$self_install" == true ]]; then
     tmp_dir="\$(cd "\$(dirname "\${BASH_SOURCE[0]}")/.." && pwd)"
+    # Create expected directory structure for self-install
+    mkdir -p "\${tmp_dir}/skill/\${SKILL_NAME}"
+    mkdir -p "\${tmp_dir}/command"
+    if [[ -f "\${tmp_dir}/SKILL.md" ]]; then
+      cp "\${tmp_dir}/SKILL.md" "\${tmp_dir}/skill/\${SKILL_NAME}/"
+    fi
+    if [[ -f "\${tmp_dir}/README.md" ]]; then
+      cp "\${tmp_dir}/README.md" "\${tmp_dir}/skill/\${SKILL_NAME}/"
+    fi
+    if [[ -d "\${tmp_dir}/references" ]]; then
+      cp -r "\${tmp_dir}/references" "\${tmp_dir}/skill/\${SKILL_NAME}/"
+    fi
+    if [[ -d "\${tmp_dir}/resources" ]]; then
+      cp -r "\${tmp_dir}/resources" "\${tmp_dir}/skill/\${SKILL_NAME}/"
+    fi
+    if [[ -f "\${tmp_dir}/LICENSE.txt" ]]; then
+      cp "\${tmp_dir}/LICENSE.txt" "\${tmp_dir}/skill/\${SKILL_NAME}/"
+    fi
+    # Handle command file naming (e.g., load-{skill}.md -> {skill}.md)
+    if [[ -f "\${tmp_dir}/command/load-\${SKILL_NAME}.md" ]] && [[ ! -f "\${tmp_dir}/command/\${SKILL_NAME}.md" ]]; then
+      cp "\${tmp_dir}/command/load-\${SKILL_NAME}.md" "\${tmp_dir}/command/\${SKILL_NAME}.md"
+    fi
   else
     tmp_dir=\$(mktemp -d)
     trap "rm -rf '\$tmp_dir'" EXIT
