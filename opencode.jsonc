@@ -1,0 +1,171 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "share": "disabled",
+  "experimental": {
+    "batch_tool": true,
+  },
+  "provider": {
+    "osaurus": {
+      "npm": "@ai-sdk/openai-compatible",
+      "id": "osaurus",
+      "name": "Osaurus (local)",
+      "options": {
+        "baseURL": "http://127.0.0.1:1337/v1",
+      },
+      "models": {
+        "granite-4.0-h-small-mlx-5bit": {
+          "limit": {
+            "context": 131072,
+            "output": 13107,
+          },
+        },
+      },
+    },
+    "venice": {
+      "models": {
+        "deepseek-v3.2:include_venice_system_prompt=false&strip_thinking_response=false&disable_thinking=false&enable_web_search=off": {
+          "limit": {
+            "context": 163840,
+            "output": 65536,
+          },
+          "name": "DeepSeek-v3.2 (custom)",
+          "cost": {
+            "input": 0.4,
+            "output": 1,
+          },
+          "tool_call": true,
+          "reasoning": true,
+        },
+        "zai-org-glm-4.7:include_venice_system_prompt=false&strip_thinking_response=false&disable_thinking=false&enable_web_search=off": {
+          "limit": {
+            "context": 202752,
+            "output": 65536,
+          },
+          "name": "GLM 4.7 (custom)",
+          "cost": {
+            "input": 0.55,
+            "output": 2.65,
+          },
+          "tool_call": true,
+          "reasoning": true,
+        },
+        "kimi-k2-thinking:include_venice_system_prompt=false&strip_thinking_response=false&disable_thinking=false&enable_web_search=off": {
+          "limit": {
+            "context": 262144,
+            "output": 65536,
+          },
+          "name": "Kimi K2 Thinking (custom)",
+          "cost": {
+            "input": 0.75,
+            "cache_read": 0.375,
+            "output": 0.32,
+          },
+          "tool_call": true,
+          "reasoning": true,
+        },
+        "grok-41-fast:include_venice_system_prompt=false&strip_thinking_response=false&disable_thinking=false&enable_web_search=off": {
+          "limit": {
+            "context": 262144,
+            "output": 65536,
+          },
+          "name": "Grok 4.1 Fast (custom)",
+          "cost": {
+            "input": 0.5,
+            "cache_read": 0.125,
+            "output": 1.25,
+          },
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+        },
+        "grok-code-fast-1:include_venice_system_prompt=false&strip_thinking_response=false&disable_thinking=false&enable_web_search=off": {
+          "limit": {
+            "context": 262144,
+            "output": 65536,
+          },
+          "name": "Grok Code Fast 1 (custom)",
+          "cost": {
+            "input": 0.25,
+            "cache_read": 0.03,
+            "output": 1.87,
+          },
+          "tool_call": true,
+          "reasoning": true,
+          "attachment": true,
+        },
+        "minimax-m21:include_venice_system_prompt=false&strip_thinking_response=false&disable_thinking=false&enable_web_search=off": {
+          "limit": {
+            "context": 202752,
+            "output": 13107,
+          },
+          "name": "Minimax 2.1 (custom)",
+          "cost": {
+            "input": 0.4,
+            "cache_read": 0.04,
+            "output": 3,
+          },
+          "tool_call": true,
+          "reasoning": true,
+        },
+        "claude-opus-45:include_venice_system_prompt=false&strip_thinking_response=false&disable_thinking=false&enable_web_search=off": {
+          "limit": {
+            "context": 202752,
+            "output": 10000,
+          },
+          "name": "Claude Opus 4.5 (custom)",
+          "cost": {
+            "input": 6,
+            "cache_read": 0.6,
+            "cache_write": 7.5,
+            "output": 30,
+          },
+          "tool_call": true,
+          "reasoning": true,
+        },
+        "openai-gpt-52:include_venice_system_prompt=false&strip_thinking_response=false&disable_thinking=false&enable_web_search=off": {
+          "limit": {
+            "context": 262144,
+            "output": 131072,
+          },
+          "name": "OpenAI GPT 5.2 (custom)",
+          "cost": {
+            "input": 2.19,
+            "cache_read": 0.219,
+            "output": 17.5,
+          },
+          "tool_call": true,
+          "reasoning": true,
+        },
+      },
+      "options": {
+        "baseURL": "https://api.venice.ai/api/v1",
+      },
+    },
+  },
+  "mcp": {
+    // "chrome-devtools": {
+    //   "type": "local",
+    //   "enabled": true,
+    //   "command": [
+    //     "pnpx",
+    //     "chrome-devtools-mcp@latest",
+    //     "-e",
+    //     "/Applications/Helium.app/Contents/MacOS/Helium"
+    //   ],
+    //   "environment": {}
+    // },
+    "context7": {
+      "type": "local",
+      "command": ["pnpx", "@upstash/context7-mcp@latest"],
+      "environment": {},
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": ["pnpx", "@modelcontextprotocol/server-sequential-thinking"],
+    },
+    // "playwright": {
+    //   "type": "local",
+    //   "command": ["pnpx", "@playwright/mcp@latest"]
+    // },
+  },
+}

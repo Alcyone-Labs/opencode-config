@@ -22,7 +22,7 @@ Subagent that generates creative feature ideas and optimizations. Grounded in ex
 
 ### skill-forge
 
-Creates [Agent Skills](https://agentskills.io/) following official guidelines. Handles research, structure validation, and packaging. Produces ZIP-ready folders with Skill.md. Use for: building reusable, shareable agent workflows.
+Creates [Agent Skills](https://agentskills.io/) following official guidelines. Handles research, structure validation, and packaging. Produces ZIP-ready folders with Skill.md. Use for: building reusable, shareable agent workflows. Strongly inspired by the structure of https://github.com/dmmulroy/cloudflare-skill/.
 
 ## Usage
 
