@@ -76,7 +76,49 @@ When a topic has nuanced "elite knowledge" (e.g., MV3 lifecycle, Cloudflare D1 m
 
 ## 4. Command File Format
 
-`command/{skill-name}.md` MUST load the skill context and provide invocation examples.
+`command/{skill-name}.md` MUST be a Markdown file with this structure:
+
+```markdown
+---
+name: { skill-name }
+description: { Brief description of what the skill does }
+---
+
+# {Skill Name}
+
+{Overview of the skill - 2-3 sentences}
+
+## Installation
+
+The skill files are located at:
+```
+
+~/.config/opencode/skill/{skill-name}/SKILL.md
+
+```
+
+## Usage
+
+To load this skill, use the internal agent command:
+
+```
+
+/agent load ~/.config/opencode/skill/{skill-name}/SKILL.md
+
+```
+
+This will load the skill manifest with all its references.
+
+## What's Included
+
+- **SKILL.md**: Main manifest with decision trees and workflow
+- **references/**: Deep-dive documentation on {topic1}, {topic2}, etc.
+  - `README.md`: Overview and when to use
+  - `api.md`: Verbatim API reference
+  - `configuration.md`: Setup and configuration
+  - `patterns.md`: Implementation patterns
+  - `gotchas.md`: Common pitfalls
+```
 
 ## 5. Install Script Requirements
 
@@ -109,7 +151,7 @@ EOF
 
 install_opencode_local() {
   local target_dir=".opencode/skill/\${SKILL_NAME}"
-  local command_dir=".opencode/command"
+  local command_dir=".opencode/commands"
   echo "Installing to OpenCode (local)..."
   mkdir -p "\$target_dir"
   mkdir -p "\$command_dir"
@@ -127,7 +169,7 @@ install_opencode_local() {
 
 install_opencode_global() {
   local target_dir="\${HOME}/.config/opencode/skill/\${SKILL_NAME}"
-  local command_dir="\${HOME}/.config/opencode/command"
+  local command_dir="\${HOME}/.config/opencode/commands"
   echo "Installing to OpenCode (global)..."
   mkdir -p "\$target_dir"
   mkdir -p "\$command_dir"
@@ -244,6 +286,7 @@ main "\$@"
 - Omit the `references/` array in YAML.
 - Include colons in YAML descriptions.
 - Forget the `install.sh` cross-platform logic or the `/` command file.
+- Generate JSON files for OpenCode commands - always use Markdown format with the `/agent load` internal command.
 
 ## 9. Addendum: Implementation Notes
 
