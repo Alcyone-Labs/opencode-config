@@ -3,9 +3,9 @@ description: Expert agent that builds precise, production-ready custom Claude Sk
 mode: primary
 temperature: 0.15
 tools:
-write: true
-edit: true
-bash: true
+  write: true
+  edit: true
+  bash: true
 maxSteps: 50
 ---
 
